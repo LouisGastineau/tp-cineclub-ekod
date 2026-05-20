@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Films — MovieBase</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-logo">MovieBase</div>
+    <ul class="navbar-links">
+        <li><a th:href="@{/}">Accueil</a></li>
+        <li><a th:href="@{/movies}">Films</a></li>
+        <li><a th:href="@{/directors}">Directeurs</a></li>
+    </ul>
+    <ul class="navbar-links">
+        <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Connexion</a></li>
+        <li sec:authorize="isAnonymous()"><a class="btn btn-primary" th:href="@{/register}">S'inscrire</a></li>
+        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Déconnexion</a></li>
+    </ul>
+</nav>
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>Films</h1>
+        <p class="page-subtitle">Découvrez notre catalogue de films</p>
+    </div>
+
+    <div class="cards-grid">
+        <a class="movie-card" th:each="movie : ${movies}" th:href="@{/movies/{id}(id=${movie.id})}">
+            <div class="movie-card-genre" th:text="${movie.genre}">Genre</div>
+            <h2 class="movie-card-title" th:text="${movie.title}">Titre</h2>
+            <div class="movie-card-meta">
+                <span th:text="${movie.releaseYear}">2024</span>
+                <span class="dot">·</span>
+                <span th:text="${movie.directorFullName}">Réalisateur</span>
+            </div>
+            <div class="movie-card-arrow">→</div>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

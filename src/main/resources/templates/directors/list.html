@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Réalisateurs — MovieBase</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-logo">MovieBase</div>
+    <ul class="navbar-links">
+        <li><a th:href="@{/}">Accueil</a></li>
+        <li><a th:href="@{/movies}">Films</a></li>
+        <li><a th:href="@{/directors}">Directeurs</a></li>
+    </ul>
+    <ul class="navbar-links">
+        <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Connexion</a></li>
+        <li sec:authorize="isAnonymous()"><a class="btn btn-primary" th:href="@{/register}">S'inscrire</a></li>
+        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Déconnexion</a></li>
+    </ul>
+</nav>
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>Réalisateurs</h1>
+        <p class="page-subtitle">Les cinéastes de notre catalogue</p>
+    </div>
+
+    <div class="cards-grid">
+        <div class="director-card" th:each="director : ${directors}">
+            <div class="director-avatar lg" th:text="${#strings.substring(director.firstName,0,1)} + ${#strings.substring(director.lastName,0,1)}">AB</div>
+            <div class="director-card-info">
+                <div class="director-name" th:text="${director.firstName} + ' ' + ${director.lastName}">Nom</div>
+                <div class="director-info" th:text="${director.nationality}">Nationalité</div>
+                <div class="director-info" th:text="${director.birthDate}">Date de naissance</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

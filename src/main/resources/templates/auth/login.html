@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion — MovieBase</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-logo">MovieBase</div>
+    <ul class="navbar-links">
+        <li><a th:href="@{/}">Accueil</a></li>
+        <li><a th:href="@{/movies}">Films</a></li>
+        <li><a th:href="@{/directors}">Directeurs</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <div class="auth-card">
+        <h2>Connexion</h2>
+
+        <p class="auth-error" th:if="${error}" th:text="${error}"></p>
+        <p class="auth-success" th:if="${param.registered}">Inscription réussie, connecte-toi !</p>
+
+        <form method="post" th:action="@{/login}">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="ton@email.com" required />
+            </div>
+            <div class="form-group">
+                <label>Mot de passe</label>
+                <input type="password" name="password" placeholder="••••••••" required />
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">Se connecter</button>
+        </form>
+
+        <p class="auth-footer">Pas encore de compte ? <a th:href="@{/register}">S'inscrire</a></p>
+    </div>
+</section>
+
+</body>
+</html>

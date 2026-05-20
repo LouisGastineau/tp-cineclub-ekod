@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+
+<nav class="navbar">
+
+    <div class="navbar-logo">
+        MovieBase
+    </div>
+
+    <ul class="navbar-links">
+        <li><a th:href="@{/}">Accueil</a></li>
+        <li><a th:href="@{/movies}">Films</a></li>
+        <li><a th:href="@{/directors}">Directeurs</a></li>
+    </ul>
+
+    <ul class="navbar-links">
+        <!-- si pas connecté -->
+        <li sec:authorize="isAnonymous()">
+            <a th:href="@{/login}">Connexion</a>
+        </li>
+        <li sec:authorize="isAnonymous()">
+            <a class="btn btn-primary" th:href="@{/register}">S'inscrire</a>
+        </li>
+
+        <!-- si connecté -->
+        <li sec:authorize="isAuthenticated()">
+            <a th:href="@{/logout}">Déconnexion</a>
+        </li>
+    </ul>
+
+</nav>
+
+<section class="hero">
+
+    <h1>Bienvenue sur MovieBase</h1>
+
+    <p>
+        Gérez vos films et réalisateurs dans une interface propre et moderne
+    </p>
+
+    <div class="hero-buttons">
+        <a class="btn btn-primary" th:href="@{/movies}">
+            Voir les films
+        </a>
+
+        <a class="btn btn-secondary" th:href="@{/directors}">
+            Voir les directeurs
+        </a>
+    </div>
+
+</section>
+
+</body>
+</html>
