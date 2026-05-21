@@ -10,7 +10,7 @@ permissions:
   packages: write
 
 env:
-  IMAGE_NAME: ghcr.io/LouisGastineau/tp-cineclub-ekod:latest
+  IMAGE_NAME: ghcr.io/louisgastineau/tp-cineclub-ekod:latest
 
 jobs:
   build-and-deploy:
